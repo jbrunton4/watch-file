@@ -1,3 +1,17 @@
+use regex::Regex;
+
+pub fn has_short_flag(args: Vec<String>, c: char) -> bool {
+    let re = Regex::new("^-[A-Za-z0-9]+$").unwrap();
+
+    for arg in args {
+        if re.is_match(&arg) && arg.contains(c) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 pub fn ensure_args_recognised(args: Vec<String>) {
     let valid_args = [
         "-h", "--head",

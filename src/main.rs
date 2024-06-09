@@ -23,15 +23,15 @@ fn main() {
     let tail = tail::has_tail_flag(args.clone());
     let n_tail = tail::get_tail_lines(args.clone());
 
-    let raw = args.contains(&String::from("--raw")) || args.contains(&String::from("-r"));
+    let raw = args.contains(&String::from("--raw")) || args_assertions::has_short_flag(args.clone(), 'r');
     let no_header = args.contains(&String::from("--no-header")) || raw;
     let no_footer = args.contains(&String::from("--no-footer"));
 
-    let use_diff = args.contains(&String::from("--diff")) || args.contains(&String::from("-d"));
+    let use_diff = args.contains(&String::from("--diff")) || args_assertions::has_short_flag(args.clone(), 'r');
 
     let wait_interval = wait::get_wait_interval(args.clone());
 
-    let quiet = output::has_quiet_flag(args.clone());
+    let quiet = args.contains(&String::from("--quiet")) || args_assertions::has_short_flag(args.clone(), 'q');
 
     let has_output_flag = output::has_output_flag(args.clone());
     let output_file = if has_output_flag { output::get_output_file(args.clone()) } else { String::new() };

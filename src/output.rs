@@ -2,10 +2,6 @@ use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::Write;
 
-pub fn has_quiet_flag(args: Vec<String>) -> bool {
-    return args.contains(&String::from("--quiet")) || args.contains(&String::from("-q"));
-}
-
 pub fn has_output_flag(args: Vec<String>) -> bool {
     return args.contains(&String::from("--output")) || args.contains(&String::from("-o"));
 }
