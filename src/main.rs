@@ -1,7 +1,7 @@
 use std::{env, thread, time};
 use std::path::Path;
 use std::fs::metadata;
-use std::fs;
+use std::{fs, process};
 use chrono;
 use diffy::{PatchFormatter, create_patch};
 
@@ -10,12 +10,20 @@ mod tail;
 mod wait;
 mod args_assertions;
 mod output;
+mod help;
 
 fn main() {
     let args: Vec<_> = env::args().collect();
     args_assertions::ensure_args_recognised(args.clone());
     args_assertions::ensure_none_conflicting(args.clone());
     args_assertions::validate_value_types(args.clone());
+
+    let help = args.contains(&String::from("--help")) || args_assertions::has_short_flag(args.clone(), 'h');
+    if help {
+        help::print_man_page();
+        process::exit(0);
+    }
+    help::install_man_page();
 
     let head = head::has_head_flag(args.clone());
     let n_head = head::get_head_lines(args.clone());
