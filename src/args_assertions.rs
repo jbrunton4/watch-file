@@ -23,7 +23,8 @@ pub fn ensure_args_recognised(args: Vec<String>) {
         "-d", "--diff",
         "-o", "--output",
         "--output-mode",
-        "-q", "--quiet"
+        "-q", "--quiet",
+        "-h", "--help"
     ];
 
     for arg in args.into_iter().filter(|s| s.chars().nth(0).unwrap() == '-') {
