@@ -1,9 +1,11 @@
+use super::args_assertions;
+
 pub fn has_head_flag(args: Vec<String>) -> bool {
     if args.contains(&String::from("--head")) && args.contains(&String::from("-h")) {
         panic!("The --head flag was passed with the -h flag");
     }
 
-    return args.contains(&String::from("--head")) || args.contains(&String::from("-h"));
+    return args.contains(&String::from("--head")) || args_assertions::has_short_flag(args.clone(), 'h');
 }
 
 pub fn get_head_lines(args: Vec<String>) -> i32 {

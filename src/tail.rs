@@ -1,9 +1,11 @@
+use super::args_assertions;
+
 pub fn has_tail_flag(args: Vec<String>) -> bool {
-    if args.contains(&String::from("--tail")) && args.contains(&String::from("-h")) {
+    if args.contains(&String::from("--tail")) && args.contains(&String::from("-t")) {
         panic!("The --tail flag was passed with the -h flag");
     }
 
-    return args.contains(&String::from("--tail")) || args.contains(&String::from("-t"));
+    return args.contains(&String::from("--tail")) || args_assertions::has_short_flag(args.clone(), 't');
 }
 
 pub fn get_tail_lines(args: Vec<String>) -> i32 {
