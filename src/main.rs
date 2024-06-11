@@ -38,7 +38,7 @@ fn main() {
     let no_header = args.contains(&String::from("--no-header")) || raw;
     let no_footer = args.contains(&String::from("--no-footer"));
 
-    let use_diff = args.contains(&String::from("--diff")) || args_assertions::has_short_flag(args.clone(), 'r');
+    let use_diff = args.contains(&String::from("--diff")) || args_assertions::has_short_flag(args.clone(), 'd');
 
     let wait_interval = wait::get_wait_interval(args.clone());
 
