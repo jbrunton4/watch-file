@@ -18,7 +18,7 @@ fn main() {
     args_assertions::ensure_none_conflicting(args.clone());
     args_assertions::validate_value_types(args.clone());
 
-    let help = args.contains(&String::from("--help")) || args_assertions::has_short_flag(args.clone(), 'h');
+    let help = args.contains(&String::from("--help")); 
     if help {
         help::print_man_page();
         process::exit(0);
