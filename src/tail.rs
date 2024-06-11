@@ -3,7 +3,7 @@ pub fn has_tail_flag(args: Vec<String>) -> bool {
         panic!("The --tail flag was passed with the -h flag");
     }
 
-    return args.contains(&String::from("--tail")) || args.contains(&String::from("-h"));
+    return args.contains(&String::from("--tail")) || args.contains(&String::from("-t"));
 }
 
 pub fn get_tail_lines(args: Vec<String>) -> i32 {
