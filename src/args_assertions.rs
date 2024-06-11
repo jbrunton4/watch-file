@@ -27,10 +27,13 @@ pub fn ensure_args_recognised(args: Vec<String>) {
         "-h", "--help"
     ];
 
+    let re = Regex::new("^-[A-Za-z0-9]+$").unwrap();
+
     for arg in args.into_iter().filter(|s| s.chars().nth(0).unwrap() == '-') {
-        if !valid_args.contains(&arg.as_str()) {
-            panic!("Unrecognised argument: {}", arg);
+        if valid_args.contains(&arg.as_str()) || re.is_match(&arg) {
+            continue;
         }
+        panic!("Unrecognised argument: {}", arg);
     }
 }
 
