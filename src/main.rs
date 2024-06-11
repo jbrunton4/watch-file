@@ -13,6 +13,8 @@ mod output;
 mod help;
 
 fn main() {
+    help::install_man_page();
+
     let args: Vec<_> = env::args().collect();
     args_assertions::ensure_args_recognised(args.clone());
     args_assertions::ensure_none_conflicting(args.clone());
@@ -23,7 +25,6 @@ fn main() {
         help::print_man_page();
         process::exit(0);
     }
-    help::install_man_page();
 
     let head = head::has_head_flag(args.clone());
     let n_head = head::get_head_lines(args.clone());
