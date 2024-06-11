@@ -76,6 +76,10 @@ pub fn install_man_page() {
 }
 
 pub fn print_man_page() {
+    if !cfg!(unix) {
+        unimplemented!("Man page is not installed on non-unix systems. Showing the help menu is not yet supported on your OS.");
+    }
+
     let output = Command::new("man")
         .args(&["-P", "cat", "/usr/share/man/man1/watch-file.1"])
         .output()

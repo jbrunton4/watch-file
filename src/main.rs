@@ -13,7 +13,9 @@ mod output;
 mod help;
 
 fn main() {
-    help::install_man_page();
+    if cfg!(unix) {
+        help::install_man_page();
+    }
 
     let args: Vec<_> = env::args().collect();
     args_assertions::ensure_args_recognised(args.clone());
